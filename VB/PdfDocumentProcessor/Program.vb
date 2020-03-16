@@ -1,0 +1,55 @@
+﻿Imports System
+Imports DevExpress.Pdf
+Imports System.Diagnostics
+Imports System.Linq
+
+Namespace PdfDocumentProcessor
+	Friend Class Program
+		Shared Sub Main(ByVal args() As String)
+			ApplySignatures()
+			Process.Start("SignedDocument.pdf")
+		End Sub
+
+		Public Shared Sub ApplySignatures()
+			'Load a document to sign
+			Using signer = New PdfDocumentSigner("Document.pdf")
+				'Specify the name and location of the signature field
+				Dim signatureFieldInfo = New PdfSignatureFieldInfo(1)
+				signatureFieldInfo.Name = "SignatureField"
+				signatureFieldInfo.SignatureBounds = New PdfRectangle(20, 20, 150, 150)
+				signatureFieldInfo.RotationAngle = PdfAcroFormFieldRotation.Rotate90
+
+				'Create a timestamp
+				Dim tsaClient As ITsaClient = New PdfTsaClient(New Uri("http://timestamp.apple.com/ts01"), PdfHashAlgorithm.SHA256)
+
+				'Create a PKCS#7 signature
+				Dim pkcs7Signature As New Pkcs7Signer("Signing Documents//certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient)
+
+				'Apply a signature to a new form field created before
+				Dim cooperSignature = New PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo)
+
+				'Specify an image and signer information
+				cooperSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents//JaneCooper.jpg"))
+				cooperSignature.Location = "USA"
+				cooperSignature.Name = "Jane Cooper"
+				cooperSignature.Reason = "Acknowledgement"
+
+				'Apply a signature to an existing form field
+				Dim santuzzaSignature = New PdfSignatureBuilder(pkcs7Signature, "Sign")
+
+				'Specify an image and signer information
+				santuzzaSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents//SantuzzaValentina.jpg"))
+				santuzzaSignature.Location = "Australia"
+				santuzzaSignature.Name = "Santuzza Valentina"
+				santuzzaSignature.Reason = "I Agree"
+
+				'Add signatures to an array
+				Dim signatures() As PdfSignatureBuilder = { cooperSignature, santuzzaSignature }
+
+				'Sign and save the document
+				signer.SaveDocument("SignedDocument.pdf", signatures)
+			End Using
+		End Sub
+	End Class
+End Namespace
+
