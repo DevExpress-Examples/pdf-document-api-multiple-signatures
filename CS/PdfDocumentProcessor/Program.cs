@@ -25,7 +25,7 @@ namespace PdfDocumentProcessor
                 signatureFieldInfo.RotationAngle = PdfAcroFormFieldRotation.Rotate90;
                 
                 //Create a timestamp
-                ITsaClient tsaClient = new PdfTsaClient(new Uri(@"http://timestamp.apple.com/ts01"), PdfHashAlgorithm.SHA256);
+                ITsaClient tsaClient = new PdfTsaClient(new Uri(@"https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256);
 
                 //Create a PKCS#7 signature
                 Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents//certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient);

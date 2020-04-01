@@ -20,7 +20,7 @@ Namespace PdfDocumentProcessor
 				signatureFieldInfo.RotationAngle = PdfAcroFormFieldRotation.Rotate90
 
 				'Create a timestamp
-				Dim tsaClient As ITsaClient = New PdfTsaClient(New Uri("http://timestamp.apple.com/ts01"), PdfHashAlgorithm.SHA256)
+				Dim tsaClient As ITsaClient = New PdfTsaClient(New Uri("https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256)
 
 				'Create a PKCS#7 signature
 				Dim pkcs7Signature As New Pkcs7Signer("Signing Documents//certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient)
