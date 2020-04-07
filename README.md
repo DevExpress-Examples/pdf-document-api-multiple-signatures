@@ -9,4 +9,4 @@ The **PDF Document API** allows you to apply multiple PKCS#7 signatures with X.5
 
 This sample project shows how to apply a signature to an existing and new signature field.
 
-Refer to the [Sign Documents]() documentation article for more information.
+Refer to the [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/pdf-document-api/document-security/sign-documents?v=20.1) documentation article for more information.
