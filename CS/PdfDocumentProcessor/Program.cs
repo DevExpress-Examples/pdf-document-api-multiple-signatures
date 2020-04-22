@@ -28,13 +28,13 @@ namespace PdfDocumentProcessor
                 ITsaClient tsaClient = new PdfTsaClient(new Uri(@"https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256);
 
                 //Create a PKCS#7 signature
-                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents//certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient);
+                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient);
 
                 //Apply a signature to a new form field created before
                 var cooperSignature = new PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo);
 
                 //Specify an image and signer information
-                cooperSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents//JaneCooper.jpg"));
+                cooperSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents/JaneCooper.jpg"));
                 cooperSignature.Location = "USA";
                 cooperSignature.Name = "Jane Cooper";
                 cooperSignature.Reason = "Acknowledgement";
@@ -43,7 +43,7 @@ namespace PdfDocumentProcessor
                 var santuzzaSignature = new PdfSignatureBuilder(pkcs7Signature, "Sign");
 
                 //Specify an image and signer information
-                santuzzaSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents//SantuzzaValentina.jpg"));
+                santuzzaSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents/SantuzzaValentina.jpg"));
                 santuzzaSignature.Location = "Australia";
                 santuzzaSignature.Name = "Santuzza Valentina";
                 santuzzaSignature.Reason = "I Agree";
