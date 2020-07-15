@@ -27,8 +27,8 @@ namespace PdfDocumentProcessor
                 //Create a timestamp
                 ITsaClient tsaClient = new PdfTsaClient(new Uri(@"https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256);
 
-                //Create a PKCS#7 signature
-                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient);
+                //Create a PAdES PKCS#7 signature
+                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient, null, null, PdfSignatureProfile.PAdES_BES);
 
                 //Apply a signature to a new form field created before
                 var cooperSignature = new PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo);
@@ -47,9 +47,21 @@ namespace PdfDocumentProcessor
                 santuzzaSignature.Location = "Australia";
                 santuzzaSignature.Name = "Santuzza Valentina";
                 santuzzaSignature.Reason = "I Agree";
+                santuzzaSignature.CertificationLevel = PdfCertificationLevel.FillFormsAndAnnotate;
+
+                //Create a new signature form field:
+                var signatureFieldInfo1 = new PdfSignatureFieldInfo(1);
+                signatureFieldInfo1.Name = "SignatureField1";
+                signatureFieldInfo1.SignatureBounds = new PdfRectangle(200, 200, 250, 250);
+
+                //Create a document level time stamp:
+                PdfTimeStamp pdfTimeStamp = new PdfTimeStamp(tsaClient);
+
+                //Apply this time stamp to the form field:
+                var timeStampSignature = new PdfSignatureBuilder(pdfTimeStamp, signatureFieldInfo1);
 
                 //Add signatures to an array
-                PdfSignatureBuilder[] signatures = { cooperSignature, santuzzaSignature };
+                PdfSignatureBuilder[] signatures = { cooperSignature, santuzzaSignature, timeStampSignature };
 
                 //Sign and save the document
                 signer.SaveDocument("SignedDocument.pdf", signatures);

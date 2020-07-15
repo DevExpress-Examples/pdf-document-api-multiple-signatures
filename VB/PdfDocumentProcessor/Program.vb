@@ -22,8 +22,8 @@ Namespace PdfDocumentProcessor
 				'Create a timestamp
 				Dim tsaClient As ITsaClient = New PdfTsaClient(New Uri("https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256)
 
-				'Create a PKCS#7 signature
-				Dim pkcs7Signature As New Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient)
+				'Create a PAdES PKCS#7 signature
+				Dim pkcs7Signature As New Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient, Nothing, Nothing, PdfSignatureProfile.PAdES_BES)
 
 				'Apply a signature to a new form field created before
 				Dim cooperSignature = New PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo)
@@ -42,9 +42,21 @@ Namespace PdfDocumentProcessor
 				santuzzaSignature.Location = "Australia"
 				santuzzaSignature.Name = "Santuzza Valentina"
 				santuzzaSignature.Reason = "I Agree"
+				santuzzaSignature.CertificationLevel = PdfCertificationLevel.FillFormsAndAnnotate
+
+				'Create a new signature form field:
+				Dim signatureFieldInfo1 = New PdfSignatureFieldInfo(1)
+				signatureFieldInfo1.Name = "SignatureField1"
+				signatureFieldInfo1.SignatureBounds = New PdfRectangle(200, 200, 250, 250)
+
+				'Create a document level time stamp:
+				Dim pdfTimeStamp As New PdfTimeStamp(tsaClient)
+
+				'Apply this time stamp to the form field:
+				Dim timeStampSignature = New PdfSignatureBuilder(pdfTimeStamp, signatureFieldInfo1)
 
 				'Add signatures to an array
-				Dim signatures() As PdfSignatureBuilder = { cooperSignature, santuzzaSignature }
+				Dim signatures() As PdfSignatureBuilder = { cooperSignature, santuzzaSignature, timeStampSignature }
 
 				'Sign and save the document
 				signer.SaveDocument("SignedDocument.pdf", signatures)
