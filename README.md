@@ -11,4 +11,4 @@ This sample project shows how to apply a signature to an existing and new signat
 
 Refer to the [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/pdf-document-api/document-security/sign-documents?v=20.1) documentation article for more information.
 
-The PDF Document API v20.1.5 and later supports PAdES signatues and document level timestamps. You can also specify the signature's certification level.
+The PDF Document API **v20.1.5 and later** supports PAdES signatures and document level timestamps. You can also specify the signature's certification level.
