@@ -42,7 +42,6 @@ Namespace PdfDocumentProcessor
 				santuzzaSignature.Location = "Australia"
 				santuzzaSignature.Name = "Santuzza Valentina"
 				santuzzaSignature.Reason = "I Agree"
-				santuzzaSignature.CertificationLevel = PdfCertificationLevel.FillFormsAndAnnotate
 
 				'Create a new signature form field:
 				Dim signatureFieldInfo1 = New PdfSignatureFieldInfo(1)
