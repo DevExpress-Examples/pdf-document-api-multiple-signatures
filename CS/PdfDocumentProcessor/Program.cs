@@ -1,7 +1,9 @@
 ﻿using System;
 using DevExpress.Pdf;
 using System.Diagnostics;
+using DevExpress.Office.DigitalSignatures;
 using System.Linq;
+using DevExpress.Office.Tsp;
 
 namespace PdfDocumentProcessor
 {
@@ -25,10 +27,10 @@ namespace PdfDocumentProcessor
                 signatureFieldInfo.RotationAngle = PdfAcroFormFieldRotation.Rotate90;
                 
                 //Create a timestamp
-                ITsaClient tsaClient = new PdfTsaClient(new Uri(@"https://freetsa.org/tsr"), PdfHashAlgorithm.SHA256);
+                ITsaClient tsaClient = new TsaClient(new Uri(@"https://freetsa.org/tsr"), HashAlgorithmType.SHA256);
 
                 //Create a PAdES PKCS#7 signature
-                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents/certificate.pfx", "123", PdfHashAlgorithm.SHA256, tsaClient, null, null, PdfSignatureProfile.PAdES_BES);
+                Pkcs7Signer pkcs7Signature = new Pkcs7Signer("Signing Documents/certificate.pfx", "123", HashAlgorithmType.SHA256, tsaClient, null, null, PdfSignatureProfile.PAdES_BES);
 
                 //Apply a signature to a new form field created before
                 var cooperSignature = new PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo);
@@ -47,7 +49,6 @@ namespace PdfDocumentProcessor
                 santuzzaSignature.Location = "Australia";
                 santuzzaSignature.Name = "Santuzza Valentina";
                 santuzzaSignature.Reason = "I Agree";
-                santuzzaSignature.CertificationLevel = PdfCertificationLevel.FillFormsAndAnnotate;
 
                 //Create a new signature form field:
                 var signatureFieldInfo1 = new PdfSignatureFieldInfo(1);
