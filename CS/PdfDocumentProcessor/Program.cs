@@ -47,7 +47,6 @@ namespace PdfDocumentProcessor
                 santuzzaSignature.Location = "Australia";
                 santuzzaSignature.Name = "Santuzza Valentina";
                 santuzzaSignature.Reason = "I Agree";
-                santuzzaSignature.CertificationLevel = PdfCertificationLevel.FillFormsAndAnnotate;
 
                 //Create a new signature form field:
                 var signatureFieldInfo1 = new PdfSignatureFieldInfo(1);
