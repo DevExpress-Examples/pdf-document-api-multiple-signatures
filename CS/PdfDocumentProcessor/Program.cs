@@ -45,10 +45,18 @@ namespace PdfDocumentProcessor
                 var santuzzaSignature = new PdfSignatureBuilder(pkcs7Signature, "Sign");
 
                 //Specify an image and signer information
-                santuzzaSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents/SantuzzaValentina.jpg"));
                 santuzzaSignature.Location = "Australia";
                 santuzzaSignature.Name = "Santuzza Valentina";
                 santuzzaSignature.Reason = "I Agree";
+
+                // Specify signature appearance parameters:
+                PdfSignatureAppearance signatureAppearance = new PdfSignatureAppearance();
+                signatureAppearance.SetImageData("Signing Documents/SantuzzaValentina.png");
+                signatureAppearance.SignatureDetailsFont.Size = 12;
+                signatureAppearance.SignatureDetailsFont.Italic = true;
+                signatureAppearance.ShowDate = true;
+                signatureAppearance.ShowReason = true;
+                santuzzaSignature.SetSignatureAppearance(signatureAppearance);
 
                 //Create a new signature form field:
                 var signatureFieldInfo1 = new PdfSignatureFieldInfo(1);
