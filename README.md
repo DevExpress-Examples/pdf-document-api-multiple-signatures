@@ -4,10 +4,6 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
-* [Program.cs](./CS/PdfDocumentProcessor/Program.cs) (VB: [Program.vb](./VB/PdfDocumentProcessor/Program.vb))
-<!-- default file list end -->
 
 # PDF Document API - Apply Multiple Signatures
 
@@ -16,6 +12,10 @@ The **PDF Document API** allows you to apply multiple PKCS#7 signatures with X.5
 This sample project shows how to apply a signature to an existing and new signature field.
 
 Refer to the [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/pdf-document-api/document-security/sign-documents?v=20.1) documentation article for more information.
+
+## Files to Review
+* [Program.cs](./CS/PdfDocumentProcessor/Program.cs) (VB: [Program.vb](./VB/PdfDocumentProcessor/Program.vb))
+
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
