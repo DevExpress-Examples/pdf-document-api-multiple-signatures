@@ -1,15 +1,16 @@
-Imports System
 Imports DevExpress.Pdf
 Imports System.Diagnostics
 Imports DevExpress.Office.DigitalSignatures
+Imports System.Linq
 Imports DevExpress.Office.Tsp
 
 Namespace PdfDocumentProcessor
 
     Friend Class Program
+
         Shared Sub Main(ByVal args As String())
             Call ApplySignatures()
-            Call Process.Start(New ProcessStartInfo("SignedDocument.pdf") With {.UseShellExecute = True})
+            Process.Start(New ProcessStartInfo("SignedDocument.pdf") With {.UseShellExecute = True})
         End Sub
 
         Public Shared Sub ApplySignatures()
@@ -27,7 +28,7 @@ Namespace PdfDocumentProcessor
                 'Apply a signature to a new form field created before
                 Dim cooperSignature = New PdfSignatureBuilder(pkcs7Signature, signatureFieldInfo)
                 'Specify an image and signer information
-                cooperSignature.SetImageData(IO.File.ReadAllBytes("Signing Documents/JaneCooper.jpg"))
+                cooperSignature.SetImageData(System.IO.File.ReadAllBytes("Signing Documents/JaneCooper.jpg"))
                 cooperSignature.Location = "USA"
                 cooperSignature.Name = "Jane Cooper"
                 cooperSignature.Reason = "Acknowledgement"
