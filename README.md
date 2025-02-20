@@ -9,12 +9,23 @@
 
 The **PDF Document API** allows you to apply multiple PKCS#7 signatures with X.509 certificates.
 
-This sample project shows how to apply a signature to an existing and new signature field.
+The [PdfSignatureBuilder](https://docs.devexpress.com/OfficeFileAPI/DevExpress.Pdf.PdfSignatureBuilder) class allows you to apply a signature to a new or existing signature form field. You can sign documents that already contain a signature.
 
-Refer to the [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/pdf-document-api/document-security/sign-documents?v=20.1) documentation article for more information.
+This sample project applies a signature to an existing and new signature field.
 
 ## Files to Review
+
 * [Program.cs](./CS/PdfDocumentProcessor/Program.cs) (VB: [Program.vb](./VB/PdfDocumentProcessor/Program.vb))
+
+## Documentation
+
+* [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/pdf-document-api/document-security/sign-documents)
+
+## More Examples
+
+* [Use a Custom Signer Class to Apply Signatures to a PDF Document](https://github.com/DevExpress-Examples/pdf-document-api-custom-signer)
+* [Use the Azure Key Vault API to Sign a PDF document](https://github.com/DevExpress-Examples/pdf-document-api-use-azure-key-vault-api-to-sign-document)
+* [Sign a PDF Document with a Certificate Stored on a Hardware Device](https://github.com/DevExpress-Examples/pdf-document-api-sign-documents-with-certificate)
 
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?

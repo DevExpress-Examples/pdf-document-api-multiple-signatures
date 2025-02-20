@@ -12,7 +12,7 @@ namespace PdfDocumentProcessor
         static void Main(string[] args)
         {
             ApplySignatures();
-            Process.Start("SignedDocument.pdf");
+            Process.Start(new ProcessStartInfo("SignedDocument.pdf") { UseShellExecute = true });
         }
 
         public static void ApplySignatures()

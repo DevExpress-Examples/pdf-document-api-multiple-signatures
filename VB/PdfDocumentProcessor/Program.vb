@@ -7,10 +7,9 @@ Imports DevExpress.Office.Tsp
 Namespace PdfDocumentProcessor
 
     Friend Class Program
-
         Shared Sub Main(ByVal args As String())
             Call ApplySignatures()
-            Call Process.Start("SignedDocument.pdf")
+            Call Process.Start(New ProcessStartInfo("SignedDocument.pdf") With {.UseShellExecute = True})
         End Sub
 
         Public Shared Sub ApplySignatures()
