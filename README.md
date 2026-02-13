@@ -19,7 +19,7 @@ Refer to the [Sign Documents](https://docs.devexpress.com/OfficeFileAPI/114623/p
 
 The PDF Document API **v20.1.5 and later** supports PAdES signatures and document level timestamps. You can also specify the signature's certification level.
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=pdf-document-api-multiple-signatures&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=pdf-document-api-multiple-signatures&~~~was_helpful=no)
 
